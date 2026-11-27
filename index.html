@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#241044">
+  <meta name="description" content="Watch NEESIM TV LIVE. Your Station, Our Station.">
+  <title>NEESIM TV LIVE</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="NEESIM TV home">
+      <span class="brand-mark"><span>NEESIM</span><b>TV</b></span>
+      <span class="tagline">YOUR STATION, OUR STATION</span>
+    </a>
+    <a class="youtube-link" href="https://www.youtube.com/channel/UCj3aX7jE7JzsYlAw8f1gdKg" target="_blank" rel="noopener">YouTube Channel ↗</a>
+  </header>
+  <main>
+    <section class="player-section" aria-label="NEESIM TV live broadcast">
+      <div class="player-heading">
+        <div><span class="live-dot"></span><span class="live-label">LIVE PLAYER</span></div>
+        <span class="station-label">NEESIM TV</span>
+      </div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/live_stream?channel=UCj3aX7jE7JzsYlAw8f1gdKg&autoplay=0&playsinline=1&rel=0" title="NEESIM TV Live" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <p class="watch-note">If NEESIM TV is broadcasting live on YouTube, the live programme will appear here. Tap play to start watching.</p>
+      <div class="actions">
+        <a class="primary-action" href="https://www.youtube.com/channel/UCj3aX7jE7JzsYlAw8f1gdKg" target="_blank" rel="noopener">Open YouTube Channel</a>
+        <button id="installBtn" class="secondary-action" hidden>Install NEESIM TV</button>
+      </div>
+    </section>
+    <section class="below"><h1>NEESIM TV LIVE</h1><p>News, entertainment and programmes — all in one place.</p></section>
+  </main>
+  <footer>© <span id="year"></span> NEESIM TV · YOUR STATION, OUR STATION</footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    let installPrompt;
+    const installBtn = document.getElementById('installBtn');
+    window.addEventListener('beforeinstallprompt', (event) => { event.preventDefault(); installPrompt = event; installBtn.hidden = false; });
+    installBtn.addEventListener('click', async () => { if (!installPrompt) return; installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; installBtn.hidden = true; });
+    if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+  </script>
+</body>
+</html>
