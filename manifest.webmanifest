@@ -1,0 +1,11 @@
+{
+  "name": "NEESIM TV LIVE",
+  "short_name": "NEESIM TV",
+  "description": "Your Station, Our Station",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#10091d",
+  "theme_color": "#241044",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
